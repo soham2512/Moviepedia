@@ -153,7 +153,7 @@ STATICFILES_DIRS = [
     BASE_DIR / "static",
 ]
 
-# STATIC_ROOT = BASE_DIR / 'static'
+STATIC_ROOT = BASE_DIR / 'static'
 
 STRIPE_PUBLISHABLE_KEY = 'pk_test_6Z4YSqJZ2fqeUMo3Pr7wQcsC'
 STRIPE_SECRET_KEY = 'sk_test_Dwh3pCTQQurQz1zy0K6jmtHP'
