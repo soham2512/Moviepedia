@@ -1,0 +1,144 @@
+{% extends "MovieBase.html" %}
+{% load static %}
+
+
+{% block content %}
+    <!-- MainContent -->
+    <section class="m-profile setting-wrapper mt-2">
+
+        <h5 class="main-title text-uppercase text-center">order Details for
+            <h2 class="slider-text big-title title text-uppercase text-center text-danger mb-4"
+                data-animation-in="fadeInLeft"
+                data-delay-in="0.6">
+                <a href="/movie/{{ movie_data.imdbID }}/">{{ user_data.firstname  }}</a>
+            </h2>
+        </h5>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 mb-3">
+                    <div class="sign-user_card text-center">
+                        <h4 class="mb-3 pb-3 a-border text-uppercase" style="color: #e50914"><a
+                                href="/movie/{{ movie_data.imdbID }}/">{{ movie_data.Title }}</a>
+                        </h4>
+
+                        <img src="/{{ movie_data.Poster }}" class="img-fluid d-block mx-auto mb-3"
+                             alt="{{ movie_data.Title }}">
+
+                    </div>
+                </div>
+                <div class="col-lg-7">
+                    <div class="sign-user_card">
+
+                        <h5 class="mb-3 pb-3 a-border">Movie Details</h5>
+                        {% if movie_data.Type|lower == 'movie' %}
+
+                            <div class="row align-items-center justify-content-between mb-3">
+                                <div class="col-12">
+                                    <span class="text-light font-size-13">Title</span>
+                                    <p class="mb-0">{{ movie_data.Title }} </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="row align-items-center justify-content-between mb-3">
+                                <div class="col-12">
+                                    <span class="text-light font-size-13">Type</span>
+                                    <p class="mb-0">{{ movie_data.Type }} </p>
+                                </div>
+
+                            </div>
+
+                            <div class="row align-items-center justify-content-between mb-3">
+                                <div class="col-md-12">
+                                    <span class="text-light font-size-13">IMDB Rating</span>
+                                    <p class="mb-0">{{ movie_data.imdbRating }} </p>
+                                </div>
+                            </div>
+
+                        {% else %}
+
+                            <div class="row align-items-center justify-content-between mb-3">
+                                <div class="col-12">
+                                    <span class="text-light font-size-13">Title</span>
+                                    <p class="mb-0">{{ movie_data.Title }} </p>
+                                </div>
+
+                            </div>
+
+
+                            <div class="row align-items-center justify-content-between mb-3">
+                                <div class="col-md-12">
+                                    <span class="text-light font-size-13">Type</span>
+                                    <p class="mb-0">{{ movie_data.Type }} </p>
+
+                                </div>
+
+                            </div>
+                            <div class="row align-items-center justify-content-between mb-0">
+                                <div class="col-md-12">
+                                    <span class="text-light font-size-13">IMDB Rating</span>
+                                    <p class="mb-0">{{ movie_data.imdbRating }} </p>
+                                </div>
+                            </div>
+
+                        {% endif %}
+
+                        <div class=" mb-4 p-0">
+                            <a href="/movie/{{ movie_data.imdbID }}/" class="btn btn-link pl-1 pt-0 text-danger"><i
+                                    class="ri-add-circle-fill mr-1"></i>More details</a>
+
+                        </div>
+
+
+                        <h5 class="mb-3 pb-3 a-border">User Details</h5>
+                        <div class="row align-items-center justify-content-between mb-3">
+                            <div class="col-md-8">
+                                <span class="text-light font-size-13">Email</span>
+                                <p class="mb-0">{{ user_data.email }} </p>
+                            </div>
+
+                        </div>
+                        <div class="row align-items-center justify-content-between mb-3">
+                            <div class="col-md-8">
+                                <span class="text-light font-size-13">USERNAME</span>
+                                <p class="mb-0">{{ user_data.username }} </p>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+                </div>
+            </div>
+            <div class="text-center justify-content-center mt-3">
+                <a id="placeorder" class="btn btn-hover">Confirm Place Order</a>
+                <a href="/movie/{{ movie_data.imdbID }}/" class=" ml-2 btn btn-hover">Back to Movie Details</a>
+            </div>
+        </div>
+        </div>
+    </section>
+
+    <script src="https://js.stripe.com/v3/"></script>
+    <script>
+        const buy_now_button = document.querySelector('#placeorder')
+        buy_now_button.addEventListener('click', event => {
+            fetch('/payment/checkout/{{ movie_data.imdbID }}'
+        )
+        .then((result) => {return result.json()}
+        )
+        .then((data) => {
+            var stripe = Stripe(data.stripe_public_key);
+        stripe.redirectToCheckout({
+            sessionId: data.session_id
+        }).then(function (result) {
+            // If `redirectToCheckout` fails due to a browser or network
+            // error, display the localized error message to your customer
+            // using `result.error.message`.
+        });
+        })
+        })
+    </script>
+{% endblock content %}

@@ -1,0 +1,21 @@
+{% autoescape off %}
+
+    Hello {{ first_name }} !! Kudos from Moviepedia !!
+
+    Welcome to Moviepedia 🎥 🎥 !! Thankyou for visiting our website and registering your account on the website.
+
+    ⬇️⬇️ Below is your confirmation link for activating your account on Moviepedia. ⬇️⬇
+
+    http://{{ domain }}{% url 'user:activate' uidb64=uid token=token %}
+
+
+
+    Thankyou and warm regards
+    ~ Moviepedia Admin. ️
+
+
+{% endautoescape %}
+
+
+
+

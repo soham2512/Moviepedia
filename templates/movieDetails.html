@@ -1,0 +1,171 @@
+{% extends "MovieBase.html" %}
+{% load static %}
+
+
+{% block content %}
+
+
+    {#    <div class="iq-breadcrumb-one  iq-bg-over iq-over-dark-50"#}
+    {#         style="background-image: url(/static/images/about-us/01.jpg);">#}
+    {#        <div class="container-fluid">#}
+    {#            <div class="row align-items-center">#}
+    {#                <div class="col-sm-12">#}
+    {#                    <nav aria-label="breadcrumb" class="text-center iq-breadcrumb-two">#}
+    {#                        <h4 class="title text-uppercase">"{{ movie_data.Title }}"</h4>#}
+    {#                    </nav>#}
+    {#                </div>#}
+    {#            </div>#}
+    {#        </div>#}
+    {#    </div>#}
+
+
+
+    <main id="main" class="site-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12">
+
+                    <div class="iq-accordion iq-accordion-square">
+
+                        <div class="iq-accordion-block iq-active 1">
+
+                            <section id="parallex" class="parallax-window"
+                                     style="background-color: black ; background-image: none; padding: 60px">
+
+                                <div class="container-fluid h-100 px-4">
+
+                                    <div class="row align-items-center justify-content-center h-100 parallaxt-details">
+
+                                        {% if our_db == True %}
+                                            <div class="col-lg-4">
+                                                <div class="parallax-img" style="width: 100%">
+                                                    <a href="/movie/{{ movie_data.imdbID }}/">
+                                                        <img src="/{{ movie_data.Poster }}" class="img-fluid w-100"
+                                                             alt="{{ movie_data.Title }}">
+                                                    </a>
+                                                </div>
+                                            </div>
+
+                                        {% else %}
+                                            <div class="col-lg-4">
+                                                <div class="parallax-img" style="width: 100%">
+                                                    <a href="/movie/{{ movie_data.imdbID }}/">
+                                                        <img src="{{ movie_data.Poster }}" class="img-fluid w-100"
+                                                             alt="bailey">
+                                                    </a>
+                                                </div>
+                                            </div>
+                                        {% endif %}
+
+
+                                        <div class="col-lg-8 r-mb-23 justify-content-center">
+                                            <div class="text-justify">
+                                                <div class="text-primary title genres text-center font-size-40 mb-2 text-uppercase">
+                                                    <b>{{ movie_data.Title }}</b>
+                                                </div>
+
+                                                <p data-animation-in="fadeInUp" data-delay-in="1.2">
+                                                    {{ movie_data.Plot }}
+
+                                                </p>
+
+                                                <div class="trending-list" data-wp_object-in="fadeInUp"
+                                                     data-delay-in="1.2">
+
+                                                    {% if movie_data.Type|lower == 'movie' %}
+                                                        <div class="text-primary title starring mb-2 text-uppercase">
+                                                            Type: <span class="text-body">{{ movie_data.Type }}</span>
+                                                        </div>
+
+                                                    {% else %}
+                                                        <div class="text-primary title starring text-uppercase">
+                                                            Type: <span class="text-body">{{ movie_data.Type }}</span>
+                                                        </div>
+
+                                                        <div class="text-primary title starring mb-2 text-uppercase">
+                                                            Total Seasons: <span
+                                                                class="text-body">{{ movie_data.totalSeasons }}</span>
+                                                        </div>
+                                                    {% endif %}
+
+
+                                                    <div class="text-primary title starring">
+                                                        Starring: <span class="text-body">{{ movie_data.Actors }}</span>
+                                                    </div>
+                                                    <div class="text-primary title genres">
+                                                        Genres: <span class="text-body">{{ movie_data.Genre }}</span>
+                                                    </div>
+
+                                                    <div class="text-primary title starring">
+                                                        Year: <span
+                                                            class="text-body "><b>{{ movie_data.Year }}</b></span>
+                                                        Rated: <span
+                                                            class="text-body"><b>{{ movie_data.Rated }}</b></span>
+                                                    </div>
+
+                                                    <hr>
+
+
+                                                    <div class="text-primary title genres mt-2">
+                                                        Released Date: <span
+                                                            class="text-body"><b>{{ movie_data.Released }}</b></span>
+                                                    </div>
+
+                                                    <div class="text-primary title starring">
+                                                        Movie Runtime: <span
+                                                            class="text-body">{{ movie_data.Runtime }}</span>
+                                                    </div>
+
+                                                    <div class="text-primary title genres ">
+                                                        Language: <span
+                                                            class="text-body"><b>{{ movie_data.Language }}</b></span>
+                                                    </div>
+
+                                                    <hr>
+
+
+                                                    <div class="title starring">
+                                                        Ratings:
+
+                                                        <div class="row align-items-center justify-content-between">
+                                                            <div class="col-12">
+                                                                {% for rating in movie_rating_data %}
+
+                                                                    <p class="text-primary title-starring mb-0">{{ rating }} </p>
+                                                                {% endfor %}
+                                                            </div>
+
+                                                        </div>
+
+                                                    </div>
+
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+
+                                <div class=" parallax-buttons mt-5 text-center justify-content-center">
+                                    <a href="/payment/{{ movie_data.imdbID }}/order/"
+                                       class="btn btn-hover"><i
+                                            class="ri-shopping-cart-fill mr-2"
+                                            aria-hidden="true"></i>
+                                        ORDER NOW !!
+                                    </a>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+
+
+    </main>
+
+
+
+{% endblock content %}

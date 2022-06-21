@@ -1,0 +1,139 @@
+{% extends "MovieBase.html" %}
+{% load static %}
+
+
+{% block content %}
+    <!-- MainContent -->
+    <section class="m-profile setting-wrapper mt-2">
+
+        <h5 class="main-title text-uppercase text-center">order Details for
+            <h2 class="slider-text big-title title text-uppercase text-center text-danger mb-4"
+                data-animation-in="fadeInLeft"
+                data-delay-in="0.6">
+                {{ movie_data.Title }}
+            </h2>
+        </h5>
+
+
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-5 mb-3 text-center text-uppercase">
+                    <div class="sign-user_card">
+                        <h4 class="mb-3 pb-3 a-border text-uppercase text-center"
+                            style="color: #e50914">{{ movie_data.Title }}
+                        </h4>
+
+                        <img src="/{{ movie_data.Poster }}" class="img-fluid d-block mx-auto mb-3"
+                             alt="{{ movie_data.Title }}">
+
+                        {% if movie_data.Type|lower == 'movie' %}
+
+                            <div class="row align-items-center justify-content-between mb-3">
+                                <div class="col-12">
+                                    <h5 class="text-light">Title : {{ movie_data.Title }}</h5>
+                                </div>
+
+                            </div>
+
+
+                            <div class="row align-items-center justify-content-between mb-3">
+                                <div class="col-12">
+                                    <h5 class="text-light ">Type: {{ movie_data.Type }} </h5>
+                                </div>
+
+                            </div>
+
+
+                        {% else %}
+
+                            <div class="row align-items-center justify-content-between mb-3">
+                                <div class="col-12">
+                                    <h5 class="text-light">Title: {{ movie_data.Title }} </h5>
+                                </div>
+
+                            </div>
+
+
+                            <div class="row align-items-center justify-content-between mb-3">
+                                <div class="col-md-12">
+                                    <h5 class="text-light ">Type: {{ movie_data.Type }}</h5>
+                                </div>
+
+                            </div>
+
+
+                        {% endif %}
+
+                    </div>
+                </div>
+
+
+                <div class="col-lg-7">
+                    <div class="sign-user_card">
+
+
+                        <h5 class="mb-3 pb-3 a-border">Order related User Details</h5>
+                        <div class="row align-items-center justify-content-between mb-3">
+                            <div class="col-md-8">
+                                <span class="text-light font-size-13">EMAIL</span>
+                                <p class="mb-0">{{ user_data.email }} </p>
+                            </div>
+
+                        </div>
+                        <div class="row align-items-center justify-content-between mb-3">
+                            <div class="col-md-8">
+                                <span class="text-light font-size-13">USERNAME</span>
+                                <p class="mb-0">{{ user_data.username }} </p>
+                            </div>
+
+                        </div>
+
+
+                        <h5 class="mb-3 pb-3 a-border">Order Related Transaction Details</h5>
+                        <div class="row align-items-center justify-content-between mb-3">
+                            <div class="col-md-8">
+                                <span class="text-light font-size-13">Transaction ID</span>
+                                <p class="mb-0">{{ order_data.transactionId }} </p>
+                            </div>
+
+                        </div>
+                        <div class="row align-items-center justify-content-between mb-3">
+                            <div class="col-md-8">
+                                <span class="text-light font-size-13">Amount (Currency) (in cents)</span>
+                                <p class="mb-0">{{ order_data.amount }} [ {{ order_data.currency }} ] </p>
+                            </div>
+
+                        </div>
+
+                        <div class="row align-items-center justify-content-between mb-3">
+                            <div class="col-md-8">
+                                <span class="text-light font-size-13">Payment Card Type</span>
+                                <p class="mb-0">Visa</p>
+                            </div>
+
+                        </div>
+
+                        <div class="row align-items-center justify-content-between mb-3">
+                            <div class="col-md-8">
+                                <span class="text-light font-size-13">Card number</span>
+                                <p class="mb-0">ending with 4242</p>
+                            </div>
+
+                        </div>
+
+
+                    </div>
+
+                    <div class="text-center justify-content-center mt-5">
+                        <a href="/userOrders/" class=" ml-2 btn btn-hover">Back to All Orders</a>
+                    </div>
+
+
+                </div>
+            </div>
+
+        </div>
+    </section>
+
+
+{% endblock content %}

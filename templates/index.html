@@ -1,0 +1,335 @@
+{% extends "MovieBase.html" %}
+{% load static %}
+
+
+{% block content %}
+
+
+
+    <!-- Slider Start -->
+    <section id="home" class="iq-main-slider p-0">
+        <div id="home-slider" class="slider m-0 p-0 ">
+            {% for movie in movie_data %}
+
+                <div class="slide slick-bg s-bg-1 "
+                     style="background-image: url({{ movie.Poster_url }}) ; background-size: 65% 90%; background-position: bottom right ">
+                    <div class="container-fluid position-relative h-100 ">
+
+
+                        <div class="slider-inner h-100">
+                            <div class="row align-items-center  h-100">
+                                <div class="col-xl-8 col-lg-8 col-md-8 col-sm-8">
+
+
+                                    <h2 class="slider-text big-title title text-uppercase"
+                                        data-animation-in="fadeInLeft"
+                                        data-delay-in="0.6">{{ movie.Title }}</h2>
+
+                                    <div class="d-flex flex-wrap align-items-center fadeInLeft animated"
+                                         data-animation-in="fadeInLeft" style="opacity: 1;">
+                                        <div class="slider-ratting d-flex align-items-center mr-4 mt-2 mt-md-3">
+                                            <span class="text-white ml-2">{{ movie.imdbRating }} (lmdb)</span>
+                                        </div>
+                                        <div class="d-flex align-items-center mt-2 mt-md-3">
+                                            <span class="badge badge-secondary p-2">{{ movie.Rated }}</span>
+                                            <span class="ml-3">{{ movie.Type }}</span>
+                                            <span class="ml-3">{{ movie.Runtime }}</span>
+
+
+                                        </div>
+                                    </div>
+                                    <p data-animation-in="fadeInUp" data-delay-in="1.2">
+                                        {{ movie.Plot }} <a href="/movie/{{ movie_data.imdbID }}/"
+                                                            class="btn btn-link pl-1 pt-0 text-danger"><i
+                                            class="ri-add-circle-fill mr-1"></i>More details</a>
+                                    </p>
+                                    <div class="trending-list" data-wp_object-in="fadeInUp" data-delay-in="1.2">
+                                        <div class="text-primary title starring">
+                                            Starring: <span class="text-body">{{ movie.Actors }}</span>
+                                        </div>
+                                        <div class="text-primary title genres">
+                                            Genres: <span class="text-body">{{ movie.Genre }}</span>
+                                        </div>
+                                    </div>
+                                    <div class="d-flex align-items-center r-mb-23" data-animation-in="fadeInUp"
+                                         data-delay-in="1.2">
+                                        <a href="/payment/{{ movie.imdbID }}/order/" class="btn btn-hover iq-button"><i
+                                                class="ri-mail-add-fill mr-2"
+                                                aria-hidden="true"></i>Order now</a>
+                                        <a href="/movie/{{ movie.imdbID }}/" class="btn btn-link">More details</a>
+                                    </div>
+                                </div>
+
+                                <div class="col-xl-4 col-lg-4 col-md-4 col-sm-4">
+
+                                    <a href="javascript:void(0);">
+                                        <div class="channel-logo" data-animation-in="fadeInLeft" data-delay-in="0.5">
+                                            <img src="{{ movie.Poster_url }}" style="height: auto ; width: 100%"
+                                                 class="c-logo " alt="{{ movie.Title }}">
+                                        </div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+        <svg xmlns="http://www.w3.org/2000/svg" style="display: none;">
+            <symbol xmlns="http://www.w3.org/2000/svg" viewBox="0 0 44 44" width="44px" height="44px" id="circle"
+                    fill="none" stroke="currentColor">
+                <circle r="20" cy="22" cx="22" id="test"></circle>
+            </symbol>
+        </svg>
+    </section>
+    <!-- Slider End -->
+
+
+    <section class="m-profile manage-p h-auto" id="movie-search-form">
+        <div class="container h-100">
+            <div class="row align-items-center justify-content-center h-100">
+                <div class="col-lg-10">
+                    <div class="sign-user_card m-auto">
+                        <div class="row justify-content-center">
+                            <div class="col-lg-10">
+                                <div class="profile-from">
+                                    <h4 class="mb-3 text-uppercase">Search your favourite Movie / TV-Series /
+                                        Episode</h4>
+
+
+                                    <form class="mt-4" action="/movie/search/" method="post">
+                                        {% csrf_token %}
+                                        <div class="form-group">
+                                            <input type="text" class="form-control mb-0" id="exampleInputl2" name="q"
+                                                   placeholder="Enter Movie Name" autocomplete="off" required>
+                                        </div>
+                                        <div class="d-flex">
+                                            <button type="submit" class="btn btn-hover"><a>Search</a></button>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+
+
+
+    <!-- MainContent -->
+
+    <div class="main-content">
+        <section id="iq-favorites">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 overflow-hidden">
+                        <div class="iq-main-header d-flex align-items-center justify-content-between">
+                            <h4 class="main-title">Recently Viewed</h4>
+                        </div>
+                        <div class="favorites-contens">
+                            <ul class="favorites-slider list-inline  row p-0 mb-0">
+                                {% for movie in continue_watching_data %}
+
+                                    <li class="slide-item">
+
+                                        <div class="block-images position-relative">
+                                            <div class="img-box">
+                                                <img src="{{ movie.Poster_url }}" class="img-fluid" alt="">
+                                            </div>
+                                            <div class="block-description">
+                                                <h6 class="iq-title"><a href="">{{ movie.Title }}</a></h6>
+                                                <div class="movie-time d-flex align-items-center my-2">
+                                                    <div class="badge badge-secondary p-1 mr-2">{{ movie.Rated }}</div>
+                                                    <span class="text-white">{{ movie.Runtime }}</span>
+                                                </div>
+                                                <div class="movie-time d-flex align-items-center my-2">
+                                                    <div class="badge badge-secondary p-1 mr-2">{{ movie.Type }}</div>
+                                                    <span class="text-white">{{ movie.Released }}</span>
+                                                </div>
+                                                <div class="hover-buttons">
+                                          <span class="btn btn-hover iq-button">
+                                          <i class="ri-information-fill mr-1" aria-hidden="true"></i>
+                                              <a href="/movie/{{ movie.imdbID }}/" class="btn btn-link">More details</a>
+                                          </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="block-social-info">
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+
+
+    <div class="main-content">
+        <section id="iq-favorites">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 overflow-hidden">
+                        <div class="iq-main-header d-flex align-items-center justify-content-between">
+                            <h4 class="main-title">Top 10 Latest Movies</h4>
+                            {#                            <a class="iq-view-all" href="movie-category.html">View All</a>#}
+                        </div>
+                        <div class="favorites-contens">
+                            <ul class="favorites-slider list-inline  row p-0 mb-0">
+                                {% for movie in recently_released_movie %}
+
+                                    <li class="slide-item">
+
+                                        <div class="block-images position-relative">
+                                            <div class="img-box">
+                                                <img src="{{ movie.Poster_url }}" class="img-fluid" alt="">
+                                            </div>
+                                            <div class="block-description">
+                                                <h6 class="iq-title"><a href="">{{ movie.Title }}</a></h6>
+                                                <div class="movie-time d-flex align-items-center my-2">
+                                                    <div class="badge badge-secondary p-1 mr-2">{{ movie.Rated }}</div>
+                                                    <span class="text-white">{{ movie.Runtime }}</span>
+                                                </div>
+                                                <div class="movie-time d-flex align-items-center my-2">
+                                                    <div class="badge badge-secondary p-1 mr-2">{{ movie.Type }}</div>
+                                                    <span class="text-white">{{ movie.Released }}</span>
+                                                </div>
+                                                <div class="hover-buttons">
+                                          <span class="btn btn-hover iq-button font-size-20">
+                                          <i class="ri-information-fill" aria-hidden="true"></i>
+                                              <a href="/movie/{{ movie.imdbID }}/" class="btn btn-link">More details</a>
+                                          </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="block-social-info">
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="main-content">
+        <section id="iq-favorites">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 overflow-hidden">
+                        <div class="iq-main-header d-flex align-items-center justify-content-between">
+                            <h4 class="main-title">Top 10 Rated Movies</h4>
+                        </div>
+                        <div class="favorites-contens">
+                            <ul class="favorites-slider list-inline  row p-0 mb-0">
+                                {% for movie in top_rated_movie %}
+
+                                    <li class="slide-item">
+
+                                        <div class="block-images position-relative">
+                                            <div class="img-box">
+                                                <img src="{{ movie.Poster_url }}" class="img-fluid" alt="">
+                                            </div>
+                                            <div class="block-description">
+                                                <h6 class="iq-title"><a href="">{{ movie.Title }}</a></h6>
+                                                <div class="movie-time d-flex align-items-center my-2">
+                                                    <div class="badge badge-secondary p-1 mr-2">{{ movie.Rated }}</div>
+                                                    <span class="text-white">{{ movie.Runtime }}</span>
+                                                </div>
+                                                <div class="movie-time d-flex align-items-center my-2">
+                                                    <div class="badge badge-secondary p-1 mr-2">{{ movie.Type }}</div>
+                                                    <span class="text-white">{{ movie.Released }}</span>
+                                                </div>
+                                                <div class="hover-buttons">
+                                          <span class="btn btn-hover iq-button font-size-20">
+                                          <i class="ri-information-fill" aria-hidden="true"></i>
+                                              <a href="/movie/{{ movie.imdbID }}/" class="btn btn-link">More details</a>
+                                          </span>
+                                                </div>
+                                            </div>
+
+                                            <div class="block-social-info">
+
+                                            </div>
+                                        </div>
+                                    </li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+    <div class="main-content">
+        <section id="iq-favorites">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12 overflow-hidden">
+                        <div class="iq-main-header d-flex align-items-center justify-content-between">
+                            <h4 class="main-title">Action & Adventure movies</h4>
+                        </div>
+                        <div class="favorites-contens">
+                            <ul class="favorites-slider list-inline  row p-0 mb-0">
+                                {% for movie in action_genre_movie %}
+
+                                    <li class="slide-item">
+
+                                        <div class="block-images position-relative">
+                                            <div class="img-box">
+                                                <img src="{{ movie.Poster_url }}" class="img-fluid" alt="">
+                                            </div>
+                                            <div class="block-description">
+                                                <h6 class="iq-title"><a href="">{{ movie.Title }}</a></h6>
+                                                <div class="movie-time d-flex align-items-center my-2">
+                                                    <div class="badge badge-secondary p-1 mr-2">{{ movie.Rated }}</div>
+                                                    <span class="text-white">{{ movie.Runtime }}</span>
+                                                </div>
+                                                <div class="movie-time d-flex align-items-center my-2">
+                                                    <div class="badge badge-secondary p-1 mr-2">{{ movie.Type }}</div>
+                                                    <span class="text-white">{{ movie.Released }}</span>
+                                                </div>
+                                                <div class="hover-buttons">
+                                          <span class="btn btn-hover iq-button">
+                                          <i class="ri-information-fill" aria-hidden="true"></i>
+                                              <a href="/movie/{{ movie.imdbID }}/" class="btn btn-link">More details</a>
+                                          </span>
+                                                </div>
+                                            </div>
+
+                                            {#                                            <div class="block-social-info">#}
+                                            {##}
+                                            {#                                            </div>#}
+                                        </div>
+                                    </li>
+                                {% endfor %}
+
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+
+
+{% endblock content %}

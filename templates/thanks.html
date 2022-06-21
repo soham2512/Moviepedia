@@ -1,0 +1,137 @@
+{% extends "MovieBase.html" %}
+{% load static %}
+
+
+{% block content %}
+    <main id="main" class="site-main">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 col-sm-12">
+                    <div class="iq-accordion iq-accordion-square">
+                        <div class="iq-accordion-block iq-active 1">
+                            <section id="parallex" class="parallax-window"
+                                     style="background-color: black ; background-image: none; padding: 30px">
+                                <div class="container-fluid h-100">
+                                    <div class="row align-items-center justify-content-center h-100 parallaxt-details">
+                                        <div class="col-lg-8 r-mb-23 justify-content-center">
+                                            <div class="text-justify">
+                                                <div class="text-success title genres text-center font-size-40 mb-2 text-uppercase">
+                                                    <b>Thank You!</b>
+                                                </div>
+                                                <h5 data-animation-in="fadeInUp" style="text-align: center"
+                                                    data-delay-in="1.2" class="text-success">
+                                                    ✅ Your order has been successfully placed ✅
+                                                </h5>
+
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+
+
+            </div>
+            {#            <h5 class="mt-3  text-center">Order Details</h5>#}
+            {##}
+            {##}
+            {#            <div class="row mt-3">#}
+            {#                <div class="col-lg-5 mb-3">#}
+            {#                    <div class="sign-user_card text-center">#}
+            {#                        <h4 class="mb-3 pb-3 a-border text-uppercase" style="color: #e50914">#}
+            {#                            {{ movie_data.Title }}#}
+            {#                        </h4>#}
+            {##}
+            {#                        <img src="/{{ movie_data.Poster }}" class="img-fluid d-block mx-auto mb-3"#}
+            {#                             alt="{{ movie_data.Title }}">#}
+            {##}
+            {#                    </div>#}
+            {#                </div>#}
+            {#                <div class="col-lg-7">#}
+            {#                    <div class="sign-user_card">#}
+            {##}
+            {#                        {% if movie_data.Type|lower == 'movie' %}#}
+            {##}
+            {#                            <div class="row align-items-center justify-content-between mb-3">#}
+            {#                                <div class="col-12">#}
+            {#                                    <span class="text-light font-size-13">Title</span>#}
+            {#                                    <p class="mb-0">{{ movie_data.Title }} </p>#}
+            {#                                </div>#}
+            {##}
+            {#                            </div>#}
+            {##}
+            {##}
+            {#                            <div class="row align-items-center justify-content-between mb-3">#}
+            {#                                <div class="col-12">#}
+            {#                                    <span class="text-light font-size-13">Type</span>#}
+            {#                                    <p class="mb-0">{{ movie_data.Type }} </p>#}
+            {#                                </div>#}
+            {##}
+            {#                            </div>#}
+            {##}
+            {#                            <div class="row align-items-center justify-content-between mb-3">#}
+            {#                                <div class="col-md-12">#}
+            {#                                    <span class="text-light font-size-13">IMDB Rating</span>#}
+            {#                                    <p class="mb-0">{{ movie_data.imdbRating }} </p>#}
+            {#                                </div>#}
+            {#                            </div>#}
+            {##}
+            {#                        {% else %}#}
+            {##}
+            {#                            <div class="row align-items-center justify-content-between mb-3">#}
+            {#                                <div class="col-12">#}
+            {#                                    <span class="text-light font-size-13">Title</span>#}
+            {#                                    <p class="mb-0">{{ movie_data.Title }} </p>#}
+            {#                                </div>#}
+            {##}
+            {#                            </div>#}
+            {##}
+            {##}
+            {#                            <div class="row align-items-center justify-content-between mb-3">#}
+            {#                                <div class="col-md-12">#}
+            {#                                    <span class="text-light font-size-13">Type</span>#}
+            {#                                    <p class="mb-0">{{ movie_data.Type }} </p>#}
+            {##}
+            {#                                </div>#}
+            {##}
+            {#                            </div>#}
+            {##}
+            {##}
+            {#                        {% endif %}#}
+            {##}
+            {##}
+            {##}
+            {#                        {% for transaction in line_items %}#}
+            {#                            <div class="row align-items-center justify-content-between mb-3">#}
+            {#                                <div class="col-md-8">#}
+            {#                                    <span class="text-light font-size-13">Transaction ID</span>#}
+            {#                                    <p class="mb-0">{{ transaction.transactionId }} </p>#}
+            {#                                </div>#}
+            {##}
+            {#                            </div>#}
+            {#                            <div class="row align-items-center justify-content-between mb-3">#}
+            {#                                <div class="col-md-8">#}
+            {#                                    <span class="text-light font-size-13">Amount</span>#}
+            {#                                    <p class="mb-0">{{ transaction.amount }} {{ transaction.currency }}</p>#}
+            {#                                </div>#}
+            {##}
+            {#                            </div>#}
+            {#                        {% endfor %}#}
+            {##}
+            {##}
+            {#                    </div>#}
+            {#                </div>#}
+            {#            </div>#}
+
+            <div class="sign-info text-center mb-3 mt-3">
+                <a type="button" href="/userOrders/" class="btn btn-hover">View all
+                    ordered Movies</a>
+            </div>
+
+
+        </div>
+    </main>
+{% endblock content %}
