@@ -55,18 +55,18 @@ def userSignup(request):
             messages.warning(request, "username is too long, Try other")
             return render(request, "sign-up.html")
 
-        if len(password)<=8:
+        if len(password)<=5:
             messages.warning(request, "The length of password must be more than 5.")
             return render(request, "sign-up.html")
 
-        specialcharacters = ['!','@','#','$','%','^','&','*','(',')']
-        if password in specialcharacters == False:
-            messages.warning(request, "Password must contain 1 special character.")
-            return render(request, "sign-up.html")
-
-        if [letter.isupper() for letter in password].count(True) < 1:
-            messages.warning(request, "Password must contain 1 capital character.")
-            return render(request, "sign-up.html")
+        # specialcharacters = ['!','@','#','$','%','^','&','*','(',')']
+        # if password in specialcharacters == False:
+        #     messages.warning(request, "Password must contain 1 special character.")
+        #     return render(request, "sign-up.html")
+        #
+        # if [letter.isupper() for letter in password].count(True) < 1:
+        #     messages.warning(request, "Password must contain 1 capital character.")
+        #     return render(request, "sign-up.html")
 
         if password != repeatpassword:
             messages.warning(request, "Passwords do not match")
