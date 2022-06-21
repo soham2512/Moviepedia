@@ -39,7 +39,9 @@ SECRET_KEY = 'django-insecure-t&a5%v4pg9^_*mrd&c@=i2r*%8^j$jtynd(*x-qtnsqi#%3!z8
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = [
+    'movie-tube.herokuapp.com'
+    ]
 
 
 # Application definition
