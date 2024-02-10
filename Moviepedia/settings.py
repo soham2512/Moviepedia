@@ -40,7 +40,8 @@ SECRET_KEY = 'django-insecure-t&a5%v4pg9^_*mrd&c@=i2r*%8^j$jtynd(*x-qtnsqi#%3!z8
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'movie-tube.herokuapp.com'
+    'movie-tube.herokuapp.com',
+    'soham2512.pythonanywhere.com'
     ]
 
 
